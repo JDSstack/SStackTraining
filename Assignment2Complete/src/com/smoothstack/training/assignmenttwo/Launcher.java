@@ -29,6 +29,12 @@ public class Launcher {
 		
 		Circle newCr = new Circle(5);
 		newCr.display();
+		
+		System.out.println();
+		//4:51 edit: Identified a misunderstanding of the assignment requirements, added Triangle class
+		
+		Triangle newTr = new Triangle(10,7);
+		newTr.display();
 
 	}
 
