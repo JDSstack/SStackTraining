@@ -32,8 +32,7 @@ public class MainMenu {
 		try {
 			selection = scanIn.nextInt();
 		} catch (InputMismatchException e) {
-			System.out
-					.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
 			return;
 		}
 
@@ -188,14 +187,45 @@ public class MainMenu {
 		System.out.println("What is the name of the book you would like to add?");
 		book.setBookName(scanIn.nextLine());
 		
+		this.myAuthorMap.forEach((key, value) -> System.out.println(key + " : " + value.getAuthorName()));
 		System.out.println("What is the ID of its author?");
-		book.setAuthorID(scanIn.nextInt());
-		scanIn.nextLine();
-		
+		//Validate Author ID
+		try {
+		selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
+		while(!this.myAuthorMap.containsKey(selection)) {
+			System.out.printf("%nInvalid input. There is no author with that ID.%nWhat is the ID of its author?%n");
+			try{selection = scanIn.nextInt();
+			scanIn.nextLine();}
+			catch (InputMismatchException e) {
+				System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+				return;
+			}
+		}
+		book.setAuthorID(selection);	
+		this.myPublishersMap.forEach((key, value) -> System.out.println(key + " : " + value.getPublisherName()));
 		System.out.println("What is the ID of its publisher?");
-		book.setPublisherID(scanIn.nextInt());
-		scanIn.nextLine();
-		
+		//Validate Publisher ID
+		try{selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
+		while(!this.myPublishersMap.containsKey(selection)) {
+			System.out.printf("%nInvalid input. There is no publisher with that ID.%nWhat is the ID of its publisher?%n");
+			try{selection = scanIn.nextInt();
+			scanIn.nextLine();}
+			catch (InputMismatchException e) {
+				System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+				return;
+			}
+		}
+		book.setPublisherID(selection);		
 		myMap.put(book.getBookID(), book);
 
 		List<String> lines = new ArrayList<>();
@@ -252,8 +282,12 @@ public class MainMenu {
 		System.out.println("Executing update function");
 		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getAuthorName()));
 		System.out.println("Which author are you updating?");
-		selection = scanIn.nextInt();
+		try{selection = scanIn.nextInt();
 		scanIn.nextLine();
+		}catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		System.out.printf("What is the author's new name?");
 		myMap.get(selection).setAuthorName(scanIn.nextLine());
 		List<String> lines = new ArrayList<>();
@@ -267,11 +301,21 @@ public class MainMenu {
 		System.out.println("Executing update function");
 		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getBookName()));
 		System.out.println("Which book are you updating?");
-		selection = scanIn.nextInt();
-		scanIn.nextLine();
+		try{selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		System.out.printf("Which field are you updating? %n1. Book Name" + "%n2. Author (ID) %n3. Publisher (ID)");
-		int selection2 = scanIn.nextInt();
-		int selection3 = 0;
+		
+		
+		int selection2 = 0;
+		try {selection2 = scanIn.nextInt();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		scanIn.nextLine();
 		switch (selection2) {
 		case 1:
@@ -281,15 +325,23 @@ public class MainMenu {
 			break;
 
 		case 2:
+			this.myAuthorMap.forEach((key, value) -> System.out.println(key + " : " + value.getAuthorName()));
 			System.out.printf("What is the ID of the book's new author?");
-			selection3 = scanIn.nextInt();
-			myMap.get(selection).setAuthorID(selection3);
+			try{myMap.get(selection).setAuthorID(scanIn.nextInt());}
+			catch (InputMismatchException e) {
+				System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+				return;
+			}
 			break;
 
 		case 3:
+			this.myPublishersMap.forEach((key, value) -> System.out.println(key + " : " + value.getPublisherName()));
 			System.out.printf("What is the ID of the book's new publisher?");
-			selection3 = scanIn.nextInt();
-			myMap.get(selection).setPublisherID(selection3);
+			try{myMap.get(selection).setPublisherID(scanIn.nextInt());}
+			catch (InputMismatchException e) {
+				System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+				return;
+			}
 			break;
 		}
 		List<String> lines = new ArrayList<>();
@@ -303,10 +355,19 @@ public class MainMenu {
 		System.out.println("Executing update function");
 		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getPublisherName()));
 		System.out.println("Which publisher are you updating?");
-		selection = scanIn.nextInt();
-		scanIn.nextLine();
+		try{selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		System.out.printf("Which field are you updating? %n1. Publisher Name" + "%n2. Publisher Address");
-		int selection2 = scanIn.nextInt();
+		int selection2 = 0;
+		try{selection2 = scanIn.nextInt();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		scanIn.nextLine();
 		switch (selection2) {
 		case 1:
@@ -325,20 +386,44 @@ public class MainMenu {
 		generateMenu();
 	}
 
-	private <T> void delete(Map<Integer, T> myMap) {
-		System.out.println("Executing delete function");
-		generateMenu();
-	}
 	
 	private void deleteAuthor(Map<Integer, Author> myMap) {
 		System.out.println("Executing delete function");
 		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getAuthorName()));
 		System.out.println("Which author would you like to delete?");
 		
-		selection = scanIn.nextInt();
-		scanIn.nextLine();
-		
+		try{selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
+
 		myMap.remove(selection);
+		
+		
+		//Attempting to remove items while accessing the map would cause a ConcurrentModificationException,
+		//so a list is created outside the map access loop, and the ID's of books-to-be-removed are added to that list.
+		List<Integer> removalSlate = new ArrayList<>();
+		this.myBooksMap.forEach((x, y) -> {
+			if(y.getAuthorID().equals(selection)) {
+				removalSlate.add(y.getBookID());
+			}
+		});
+		
+		//Removing books authored by the removed author for referential integrity.
+		removalSlate.forEach( n -> this.myBooksMap.remove(n));
+		
+		
+		//Write both maps to file
+		List<String> lines = new ArrayList<>();
+		List<String> bookLines = new ArrayList<>();
+		myMap.forEach((key, value) -> lines.add(value.toString()));
+		this.myBooksMap.forEach((key, value) -> bookLines.add(value.toString()));
+		WriteToFileExample.writeAuthor(lines);
+		WriteToFileExample.writeBook(bookLines);
+		
+		
 		generateMenu();
 	}
 	
@@ -347,10 +432,19 @@ public class MainMenu {
 		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getBookName()));
 		System.out.println("Which book would you like to delete?");
 		
-		selection = scanIn.nextInt();
-		scanIn.nextLine();
+		try{selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		
 		myMap.remove(selection);
+		
+		//Write the map to file
+		List<String> lines = new ArrayList<>();
+		myMap.forEach((key, value) -> lines.add(value.toString()));
+		WriteToFileExample.writeBook(lines);
 		generateMenu();
 	}
 	
@@ -359,10 +453,34 @@ public class MainMenu {
 		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getPublisherName()));
 		System.out.println("Which publisher would you like to delete?");
 		
-		selection = scanIn.nextInt();
-		scanIn.nextLine();
+		try{selection = scanIn.nextInt();
+		scanIn.nextLine();}
+		catch (InputMismatchException e) {
+			System.out.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
+			return;
+		}
 		
 		myMap.remove(selection);
+		
+		//Attempting to remove items while accessing the map would cause a ConcurrentModificationException,
+		//so a list is created outside the map access loop, and the ID's of books-to-be-removed are added to that list.
+		List<Integer> removalSlate = new ArrayList<>();
+		this.myBooksMap.forEach((x, y) -> {
+			if(y.getPublisherID().equals(selection)) {
+				removalSlate.add(y.getBookID());
+			}
+		});
+		
+		//Removing books authored by the removed author for referential integrity.
+		removalSlate.forEach( n -> this.myBooksMap.remove(n));
+		
+		//Write both maps to file
+		List<String> lines = new ArrayList<>();
+		List<String> bookLines = new ArrayList<>();
+		myMap.forEach((key, value) -> lines.add(value.toString()));
+		this.myBooksMap.forEach((key, value) -> bookLines.add(value.toString()));
+		WriteToFileExample.writeAuthor(lines);
+		WriteToFileExample.writeBook(bookLines);
 		generateMenu();
 	}
 
