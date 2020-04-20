@@ -67,10 +67,12 @@ public class MainMenu {
 					.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
 			return;
 		}
+		
+		scanIn.nextLine();
 
 		switch (selection) {
 		case 1:
-			create(myAuthorMap);
+			createAuthor(myAuthorMap);
 			break;
 		case 2:
 			readAuthors(myAuthorMap);
@@ -98,10 +100,12 @@ public class MainMenu {
 					.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
 			return;
 		}
+		
+		scanIn.nextLine();
 
 		switch (selection) {
 		case 1:
-			create(myBooksMap);
+			createBook(myBooksMap);
 			break;
 		case 2:
 			readBooks(myBooksMap);
@@ -129,10 +133,12 @@ public class MainMenu {
 					.printf("Invalid selection. Please input integers only for navigation. %nTerminating application.");
 			return;
 		}
+		
+		scanIn.nextLine();
 
 		switch (selection) {
 		case 1:
-			create(myPublishersMap);
+			createPub(myPublishersMap);
 			break;
 		case 2:
 			readPublisher(myPublishersMap);
@@ -150,11 +156,76 @@ public class MainMenu {
 		}
 	}
 
-	private <T> void create(Map<Integer, T> myMap) {
+	
+	private void createAuthor(Map<Integer, Author> myMap) {
+		Author author = new Author(0, "Test");
 		System.out.println("Executing create function");
+		for (int i = 1; i<=myMap.size()+1; i++) {
+			if (!myMap.containsKey(i)) {
+				author.setAuthorID(i);
+			}
+		}
+		System.out.println("What is the name of the author you would like to add?");
+
+		author.setAuthorName(scanIn.nextLine());
+		myMap.put(author.getAuthorID(), author);
+		
+		List<String> lines = new ArrayList<>();
+		myMap.forEach((key, value) -> lines.add(value.toString()));
+		WriteToFileExample.writeAuthor(lines);
+
 		generateMenu();
 	}
 
+	private void createBook(Map<Integer, Books> myMap) {
+		Books book = new Books(1, "Test", 0, 0);
+		System.out.println("Executing create function");
+		for (int i = 1; i<=myMap.size()+1; i++) {
+			if (!myMap.containsKey(i)) {
+				book.setBookID(i);
+			}
+		}
+		System.out.println("What is the name of the book you would like to add?");
+		book.setBookName(scanIn.nextLine());
+		
+		System.out.println("What is the ID of its author?");
+		book.setAuthorID(scanIn.nextInt());
+		scanIn.nextLine();
+		
+		System.out.println("What is the ID of its publisher?");
+		book.setPublisherID(scanIn.nextInt());
+		scanIn.nextLine();
+		
+		myMap.put(book.getBookID(), book);
+
+		List<String> lines = new ArrayList<>();
+		myMap.forEach((key, value) -> lines.add(value.toString()));
+		WriteToFileExample.writeBook(lines);
+		generateMenu();
+	}
+	
+	private void createPub(Map<Integer, Publisher> myMap) {
+		Publisher pub = new Publisher(0000, "Test", "TestLane");
+		System.out.println("Executing create function");
+		for (int i = 1; i<=myMap.size()+1; i++) {
+			if (!myMap.containsKey(i)) {
+				pub.setPublisherID(i);
+			}
+		}
+		System.out.println("What is the name of the publisher you would like to add?");
+		pub.setPublisherName(scanIn.nextLine());
+		
+		System.out.println("What is its address?");
+		pub.setPublisherAddress(scanIn.nextLine());
+		
+		myMap.put(pub.getPublisherID(), pub);
+		
+		List<String> lines = new ArrayList<>();
+		myMap.forEach((key, value) -> lines.add(value.toString()));
+		WriteToFileExample.writePublisher(lines);
+		generateMenu();
+	}
+	
 	private void readAuthors(Map<Integer, Author> myMap) {
 
 		System.out.println("Executing read function");
@@ -184,8 +255,7 @@ public class MainMenu {
 		selection = scanIn.nextInt();
 		scanIn.nextLine();
 		System.out.printf("What is the author's new name?");
-		String newName = scanIn.nextLine();
-		myMap.get(selection).setAuthorName(newName);
+		myMap.get(selection).setAuthorName(scanIn.nextLine());
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
 		WriteToFileExample.writeAuthor(lines);
@@ -237,19 +307,16 @@ public class MainMenu {
 		scanIn.nextLine();
 		System.out.printf("Which field are you updating? %n1. Publisher Name" + "%n2. Publisher Address");
 		int selection2 = scanIn.nextInt();
-		String newName = "";
 		scanIn.nextLine();
 		switch (selection2) {
 		case 1:
 			System.out.printf("What is the publisher's new name?");
-			newName = scanIn.nextLine();
-			myMap.get(selection).setPublisherName(newName);
+			myMap.get(selection).setPublisherName(scanIn.nextLine());
 			break;
 
 		case 2:
 			System.out.printf("What is the publisher's new address?");
-			newName = scanIn.nextLine();
-			myMap.get(selection).setPublisherName(newName);
+			myMap.get(selection).setPublisherName(scanIn.nextLine());
 			break;
 		}
 		List<String> lines = new ArrayList<>();
