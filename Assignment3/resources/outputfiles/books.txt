@@ -1,4 +1,1 @@
-1,MarvelComic1,6,7
-2,MarvelComic2,6,7
-3,MarvelComic3,6,7
-7,Pictures of Spider Man,0,4
+4,Pictures of Spider Man,4,1

@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 
  * @author ppradhan
  */
-public class WriteToFileExample {
+public class WriteToFileService {
 
 	/**
 	 * Method to demonstrate Write File.

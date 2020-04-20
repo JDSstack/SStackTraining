@@ -1,5 +1,5 @@
 //Jeremy Didier
-//4-19-20
+//4-20-20
 //Smoothstack Assignment 3
 
 package com.smoothstack.training.assignmentthree;
@@ -171,7 +171,7 @@ public class MainMenu {
 		
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writeAuthor(lines);
+		WriteToFileService.writeAuthor(lines);
 
 		generateMenu();
 	}
@@ -230,7 +230,7 @@ public class MainMenu {
 
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writeBook(lines);
+		WriteToFileService.writeBook(lines);
 		generateMenu();
 	}
 	
@@ -252,7 +252,7 @@ public class MainMenu {
 		
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writePublisher(lines);
+		WriteToFileService.writePublisher(lines);
 		generateMenu();
 	}
 	
@@ -292,7 +292,7 @@ public class MainMenu {
 		myMap.get(selection).setAuthorName(scanIn.nextLine());
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writeAuthor(lines);
+		WriteToFileService.writeAuthor(lines);
 		generateMenu();
 	}
 
@@ -346,7 +346,7 @@ public class MainMenu {
 		}
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writeBook(lines);
+		WriteToFileService.writeBook(lines);
 		generateMenu();
 	}
 
@@ -382,7 +382,7 @@ public class MainMenu {
 		}
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writePublisher(lines);
+		WriteToFileService.writePublisher(lines);
 		generateMenu();
 	}
 
@@ -420,8 +420,8 @@ public class MainMenu {
 		List<String> bookLines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
 		this.myBooksMap.forEach((key, value) -> bookLines.add(value.toString()));
-		WriteToFileExample.writeAuthor(lines);
-		WriteToFileExample.writeBook(bookLines);
+		WriteToFileService.writeAuthor(lines);
+		WriteToFileService.writeBook(bookLines);
 		
 		
 		generateMenu();
@@ -444,7 +444,7 @@ public class MainMenu {
 		//Write the map to file
 		List<String> lines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
-		WriteToFileExample.writeBook(lines);
+		WriteToFileService.writeBook(lines);
 		generateMenu();
 	}
 	
@@ -479,8 +479,8 @@ public class MainMenu {
 		List<String> bookLines = new ArrayList<>();
 		myMap.forEach((key, value) -> lines.add(value.toString()));
 		this.myBooksMap.forEach((key, value) -> bookLines.add(value.toString()));
-		WriteToFileExample.writeAuthor(lines);
-		WriteToFileExample.writeBook(bookLines);
+		WriteToFileService.writeAuthor(lines);
+		WriteToFileService.writeBook(bookLines);
 		generateMenu();
 	}
 

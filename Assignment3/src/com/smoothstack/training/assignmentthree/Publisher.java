@@ -17,7 +17,6 @@ public class Publisher implements Serializable, Comparable<Publisher> {
 	private String publisherAddress;
 
 	public Publisher(Integer publisherID, String publisherName, String publisherAddress) {
-		super();
 		this.publisherID = publisherID;
 		this.publisherName = publisherName;
 		this.publisherAddress = publisherAddress;

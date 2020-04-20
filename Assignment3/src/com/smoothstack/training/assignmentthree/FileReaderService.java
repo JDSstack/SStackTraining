@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Map;
 
-public class FileReaderExample {
+public class FileReaderService {
 
 
 	public static void prepTables(Map<Integer, Author> myAuthorMap, Map<Integer, Books> myBooksMap,
 			Map<Integer, Publisher> myPublishersMap) {
+		//Loads input files into maps
 		prepAuthor(myAuthorMap);
 		prepBooks(myBooksMap);
 		prepPubs(myPublishersMap);
@@ -75,25 +76,6 @@ public class FileReaderExample {
 			System.out.println("Failed to read from File");
 
 		}
-	}
-
-	public static boolean checkDuplicates(String input) {
-		boolean x = false;
-		try (BufferedReader bufStream = new BufferedReader(new FileReader("resources/outputfiles/outputFileIII.txt"))) {
-			String line = bufStream.readLine();
-			while (line != null) {
-				if (input.equals(line.substring(line.indexOf(",") + 1, line.length()))) {
-					x = true;
-				}
-				line = bufStream.readLine();
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Failed to read from File");
-
-		}
-		return x;
 	}
 
 }

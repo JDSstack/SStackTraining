@@ -1,5 +1,5 @@
 //Jeremy Didier
-//4-19-20
+//4-20-20
 //Smoothstack Assignment 3
 
 package com.smoothstack.training.assignmentthree;
@@ -16,7 +16,7 @@ public class Main {
 
 
 	public static void main(String[] args) {
-		FileReaderExample.prepTables(myAuthorMap, myBooksMap, myPublishersMap);
+		FileReaderService.prepTables(myAuthorMap, myBooksMap, myPublishersMap);
 		//myAuthorMap.forEach((key,value) -> System.out.println(key + " = " + value+" name: "+ key.getAuthorName()));
 		@SuppressWarnings("unused")
 		MainMenu menu = new MainMenu(myAuthorMap, myBooksMap, myPublishersMap);
