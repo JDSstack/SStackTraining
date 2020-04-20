@@ -81,7 +81,7 @@ public class MainMenu {
 			updateAuthors(myAuthorMap);
 			break;
 		case 4:
-			delete(myAuthorMap);
+			deleteAuthor(myAuthorMap);
 			break;
 		default:
 			System.out.println("Invalid selection. Please choose one of the listed options.");
@@ -114,7 +114,7 @@ public class MainMenu {
 			updateBooks(myBooksMap);
 			break;
 		case 4:
-			delete(myBooksMap);
+			deleteBook(myBooksMap);
 			break;
 		default:
 			System.out.println("Invalid selection. Please choose one of the listed options.");
@@ -148,7 +148,7 @@ public class MainMenu {
 			updatePublisher(myPublishersMap);
 			break;
 		case 4:
-			delete(myPublishersMap);
+			deletePub(myPublishersMap);
 			break;
 		default:
 			System.out.println("Invalid selection. Please choose one of the listed options.");
@@ -327,6 +327,42 @@ public class MainMenu {
 
 	private <T> void delete(Map<Integer, T> myMap) {
 		System.out.println("Executing delete function");
+		generateMenu();
+	}
+	
+	private void deleteAuthor(Map<Integer, Author> myMap) {
+		System.out.println("Executing delete function");
+		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getAuthorName()));
+		System.out.println("Which author would you like to delete?");
+		
+		selection = scanIn.nextInt();
+		scanIn.nextLine();
+		
+		myMap.remove(selection);
+		generateMenu();
+	}
+	
+	private void deleteBook(Map<Integer, Books> myMap) {
+		System.out.println("Executing delete function");
+		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getBookName()));
+		System.out.println("Which book would you like to delete?");
+		
+		selection = scanIn.nextInt();
+		scanIn.nextLine();
+		
+		myMap.remove(selection);
+		generateMenu();
+	}
+	
+	private void deletePub(Map<Integer, Publisher> myMap) {
+		System.out.println("Executing delete function");
+		myMap.forEach((key, value) -> System.out.println(key + " : " + value.getPublisherName()));
+		System.out.println("Which publisher would you like to delete?");
+		
+		selection = scanIn.nextInt();
+		scanIn.nextLine();
+		
+		myMap.remove(selection);
 		generateMenu();
 	}
 
