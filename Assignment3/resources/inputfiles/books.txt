@@ -1,0 +1,3 @@
+001,MarvelComic1,006,007
+002,MarvelComic2,006,007
+003,MarvelComic3,006,007
