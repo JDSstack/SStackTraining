@@ -22,10 +22,12 @@ public class FileReaderService {
 			while (line != null) {
 				Author author = new Author(1, "Test");
 				String[] fields = line.split(",");
+				//Read in from file as string, delineate by commas, 
+				//split each variable from string into array of variables to construct objects with
 				author.setAuthorID(Integer.parseInt(fields[0]));
 				author.setAuthorName(fields[1]);
-				// System.out.println("Author ID: " + author.getAuthorID() + " & Author Name:" +
-				// author.getAuthorName());
+
+				//append objects to map
 				myMap.put(author.getAuthorID(), author);
 				line = bufStream.readLine();
 			}
@@ -63,7 +65,7 @@ public class FileReaderService {
 
 			String line = bufStream.readLine();
 			while (line != null) {
-				Publisher pub = new Publisher(0000, "Test", "TestLane");
+				Publisher pub = new Publisher(1, "Test", "TestLane");
 				String[] fields = line.split(",");
 				pub.setPublisherID(Integer.parseInt(fields[0]));
 				pub.setPublisherName(fields[1]);

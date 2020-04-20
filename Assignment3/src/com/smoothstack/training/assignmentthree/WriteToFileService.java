@@ -9,18 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * This is a class which writes data into files. SS April 2020
- * 
- * @author ppradhan
- */
+
+
 public class WriteToFileService {
 
-	/**
-	 * Method to demonstrate Write File.
-	 * 
-	 * @param args
-	 */
 	
 	
 	public static void writeAuthor(List<String> lines) {

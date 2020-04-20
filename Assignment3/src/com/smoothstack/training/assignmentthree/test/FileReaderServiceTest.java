@@ -24,6 +24,8 @@ public class FileReaderServiceTest {
 		Map<Integer, Publisher> testPublishersMap = new TreeMap<>();
 		FileReaderService.prepTables(testAuthorMap, testBooksMap, testPublishersMap);
 		
+		
+		//Check to see if all maps loaded in the first item
 		assertEquals(true, testAuthorMap.containsKey(1));
 		assertEquals(true, testBooksMap.containsKey(1));
 		assertEquals(true, testPublishersMap.containsKey(1));

@@ -19,7 +19,7 @@ public class MainMenu {
 
 	public MainMenu(Map<Integer, Author> myAuthorMap, Map<Integer, Books> myBooksMap,
 			Map<Integer, Publisher> myPublishersMap) {
-
+		//Load in all maps, launch menu in constructor. With this, all methods are left private.
 		this.myAuthorMap = myAuthorMap;
 		this.myBooksMap = myBooksMap;
 		this.myPublishersMap = myPublishersMap;
