@@ -6,7 +6,7 @@
 
 2.	 Given a random date, how would you find the date of the previous Thursday?
 
-	 LocalDate lastThursday = randomDate.with(TemporalAdjusters.previous(DayOfWeek.TUESDAY));
+	 LocalDate lastThursday = randomDate.with(TemporalAdjusters.previous(DayOfWeek.THURSDAY));
 	 
 
 3.	 What is the difference between a ZoneId and a ZoneOffset?
@@ -21,6 +21,53 @@
     
 5.	 Write an example that, for a given year, reports the length of each month within that year.
 
+ 	 LocalDate firstInYear = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+
+
+	public List<Integer> monthDays() {
+
+		LocalDate firstInYear = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+		List<Integer> days = new ArrayList<Integer>();
+
+		  for (int i = 0; i< 12; i++){
+		  Month tempMonth = firstInYear.getMonth().plus(i);
+		  
+		  days.add(tempMonth.length(firstInYear.isLeapYear()));
+		  }
+		  
+		  return days;
+	}
+	
+	Returns a list of integers, each the amount of days in each month. Any date can be substituted for the firstDayOfYear.  
+
 6.	 Write an example that, for a given month of the current year, lists all of the Mondays in that month.
 
+	public List<LocalDate> mondays() {
+		LocalDate firstInYear = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+		
+		List<LocalDate> mondays = new ArrayList<LocalDate>();
+		
+		for (int i = 1; i <= 5; i++) {
+			LocalDate tempDate = firstInYear.plusWeeks(i).with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
+			mondays.add(tempDate);
+		}
+		
+		return mondays;
+	}
+	
+	Any date can be substituted for the firstDayOfYear.  
+
 7.	 Write an example that tests whether a given date occurs on Friday the 13th.
+	
+	public boolean isFriday13() {
+		LocalDate firstInYear = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+		
+		if((firstInYear.getDayOfWeek().equals(DayOfWeek.FRIDAY) && (firstInYear.getDayOfMonth() == 13))){
+			return true;
+		}
+		
+		return false;
+	}
+
+
+	Any date can be substituted for the firstDayOfYear.  
