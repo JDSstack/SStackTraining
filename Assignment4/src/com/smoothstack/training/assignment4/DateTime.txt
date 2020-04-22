@@ -6,13 +6,18 @@
 
 2.	 Given a random date, how would you find the date of the previous Thursday?
 
-	 ZonedDateTime randomDay.getDayOfWeek();
-	 //Then subtract the numeric value of the day in the week from the value of Thursday to get the number of days since Thursday. 
-	 //Subtract the number of days since Thursday from the date.
+	 LocalDate lastThursday = randomDate.with(TemporalAdjusters.previous(DayOfWeek.TUESDAY));
+	 
 
 3.	 What is the difference between a ZoneId and a ZoneOffset?
 
+	 A ZoneID is the ID for a unique time zone. A ZoneOffset is the amount of time that a time zone differs from Greenwich/UTC. 
+	 This is usually a fixed number of hours and minutes.
+
 4.	 How would you convert an Instant to a ZonedDateTime? How would you convert a ZonedDateTime to an Instant?
+
+	 A. The atZone method combines an Instant with a time zone. 
+	 B. The ofInstant methods creates an Instant from a ZonedDateTime.
     
 5.	 Write an example that, for a given year, reports the length of each month within that year.
 
