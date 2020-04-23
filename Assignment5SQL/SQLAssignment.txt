@@ -1,0 +1,60 @@
+SQL EXERCISE
+
+
+Retrieve the required information using SQL language.
+
+Use the functions in the below URL for reference:
+
+http://dev.mysql.com/doc/refman/5.5/en/functions.html
+
+
+1.	How many copies of the book titled 'Jerk Theory, The' are owned by the library branch whose name is 'Prostrate Milkvetch'?
+
+select tbl_book_copies.noOfCopies, tbl_library_branch.branchName, tbl_book.title from tbl_book_copies INNER JOIN tbl_library_branch on
+tbl_library_branch.branchId = tbl_book_copies.branchId INNER JOIN tbl_book on
+tbl_book.bookId = tbl_book_copies.bookId where tbl_book.title = 'Jerk Theory, the';
+
+100
+
+
+
+2.	How many copies of the book titled Jerk Theory are owned by each library branch?
+
+The same command indicates that only Prostrate Milkvetch has any copies, of which there are 100 copies.
+
+3.	Retrieve the names of all borrowers who do not have any books checked out .
+
+SELECT tbl_borrower.name, tbl_borrower.cardNo FROM tbl_borrower
+WHERE NOT EXISTS 
+(select * from tbl_book_loans  where tbl_book_loans.cardNo = tbl_borrower.cardNo);
+
+4.	For each book that is loaned out from the "Library Lichen" branch and whose DueDate is today, retrieve the book title, the borrower's name, and the borrower's address.
+
+select tbl_book.bookId, tbl_borrower.name, tbl_borrower.address 
+from tbl_book_loans inner join tbl_book on tbl_book_loans.bookId = tbl_book.bookId
+inner join tbl_borrower on tbl_borrower.cardNo = tbl_book_loans.cardNo 
+where  tbl_book_loans.dueDate like '2020-04-22%';
+
+5.	For each library branch, retrieve the branch name and the total number of books loaned out from that branch.
+
+SELECT tbl_library_branch.branchName, count(tbl_book_loans.branchId) AS booksLoaned FROM
+tbl_library_branch INNER JOIN tbl_book_loans 
+ON tbl_book_loans.branchId = tbl_library_branch.branchId 
+GROUP BY tbl_library_branch.branchName ORDER BY booksLoaned DESC
+
+6.	Retrieve the names, addresses, and number of books checked out for all borrowers who have more than five books checked out. 
+
+SELECT tbl_borrower.name, tbl_borrower.address, count(tbl_book_loans.cardNo) 
+AS booksCheckedOut FROM tbl_borrower INNER JOIN tbl_book_loans 
+ON tbl_borrower.cardNo = tbl_book_loans.cardNo
+GROUP BY tbl_borrower.name ORDER BY booksCheckedOut DESC;
+
+7.	For each book authored (or co-authored) by "Anetta Skahill", retrieve the title and the number of copies owned by the library branch whose name is "Rio Grande Ragweed"
+
+SELECT tbl_book.title, tbl_book_copies.noOfCopies, tbl_library_branch.branchName FROM tbl_book_copies 
+INNER JOIN tbl_library_branch on tbl_library_branch.branchId = tbl_book_copies.branchId 
+INNER JOIN tbl_book on tbl_book.bookId = tbl_book_copies.bookId
+INNER JOIN tbl_book_authors on tbl_book.bookId = tbl_book_authors.bookId
+INNER JOIN tbl_author on tbl_author.authorId = tbl_book_authors.authorId 
+WHERE tbl_author.authorName = 'Anetta Skahill' 
+AND tbl_library_branch.branchName = 'Rio Grande Ragweed';
